@@ -1,0 +1,34 @@
+<div class="main-container">
+  <div class="search-bar-container">
+    <div class="field">
+      <p class="control has-icons-left">
+        <input
+          class="input"
+          #text
+          type="text"
+          placeholder="Find note"
+          [(ngModel)]="searchText"
+          (change)="searchNote(text.value)"
+        />
+        <span class="icon is-small is-left">
+          <i class="fas fa-search"></i>
+        </span>
+      </p>
+    </div>
+  </div>
+  <div class="notes-list">
+    <div *ngIf="displayNoData" class="noMessageWrapper">
+      <p>Add notes...:)</p>
+    </div>
+    <app-note-card
+      *ngFor="let note of notes; let i = index"
+      [link]="i"
+      (delete)="deleteSelectedNote(note)"
+      [title]="note.title"
+      [body]="note.body"
+    ></app-note-card>
+  </div>
+  <button class="button floating-add-button is-primary" routerLink="new">
+    Add new note
+  </button>
+</div>

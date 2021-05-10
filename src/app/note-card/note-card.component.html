@@ -1,0 +1,13 @@
+<div class="note-card-container">
+  <a [routerLink]="link">
+    <div class="note-card-content">
+      <h1 class="note-card-title">{{ title }}</h1>
+      <div #bodyText class="note-card-body">
+        <p>{{ body }}</p>
+      </div>
+    </div>
+  </a>
+  <div class="close-button" (click)="onDeleteButtonClick()">
+    <img src="/assets/close_button.png" alt="image" class="close-button-icon" />
+  </div>
+</div>
