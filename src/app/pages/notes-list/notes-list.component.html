@@ -22,7 +22,7 @@
     </div>
     <app-note-card
       *ngFor="let note of notes; let i = index"
-      [link]="i"
+      [link]="note.id"
       (delete)="deleteSelectedNote(note)"
       [title]="note.title"
       [body]="note.body"

@@ -26,11 +26,12 @@ export class NoteDetailsComponent implements OnInit {
       this.note = new Note();
       if (params.id) {
         this.stored = this.notesService.getStoredNotes();
-        this.note = this.stored[params.id];
+        this.note = this.stored.find((v) => v.id == params.id);
         this.noteId = params.id;
         this.new = false;
       } else {
         this.new = true;
+        this.note.id = Math.floor(Math.random() * 100);
       }
     });
   }
@@ -39,15 +40,11 @@ export class NoteDetailsComponent implements OnInit {
     if (this.new) {
       this.notesService.storeNotes(form.value);
     } else {
-      const updateIndex = this.stored.findIndex(
-        (s) => s.title === this.note.title && s.body === this.note.body
-      );
+      const noteToUpdate = this.stored.find((v) => v.id == this.noteId);
 
-      if (updateIndex !== -1) {
-        this.stored[updateIndex].title = form.value.title;
-        this.stored[updateIndex].body = form.value.body;
-        localStorage.setItem('notes', JSON.stringify(this.stored));
-      }
+      noteToUpdate.title = form.value.title;
+      noteToUpdate.body = form.value.body;
+      localStorage.setItem('notes', JSON.stringify(this.stored));
     }
     this.router.navigateByUrl('/');
   }

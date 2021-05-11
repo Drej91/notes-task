@@ -17,10 +17,6 @@ export class NotesService {
 
   constructor() {}
 
-  getId(note: Note): number {
-    return this.notes.indexOf(note);
-  }
-
   addNote(note: Note): number {
     const newLength = this.notes.push(note);
     return newLength - 1;
@@ -34,7 +30,6 @@ export class NotesService {
 
   storeNotes(note: Note): void {
     const alreadyInStorage = this.getStoredNotes();
-
     if (alreadyInStorage) {
       alreadyInStorage.push(note);
       localStorage.setItem('notes', JSON.stringify(alreadyInStorage));

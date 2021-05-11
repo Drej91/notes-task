@@ -32,7 +32,7 @@ export class NotesListComponent implements OnInit {
     if (findNoteIndex !== -1) {
       this.notes.splice(findNoteIndex, 1);
       localStorage.setItem('notes', JSON.stringify(this.notes));
-      if (this.notes.length === 0) {
+      if (!this.notes.length) {
         this.displayNoData = true;
       }
     }
